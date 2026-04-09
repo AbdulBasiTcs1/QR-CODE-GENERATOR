@@ -1,63 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!--
-  This is the QR Code Generater and in which I will try to make this app.  
--->
-
-<head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Generator</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-    integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- 
-        Loads the QRCode.js library from a CDN (Content Delivery Network) — a fast external server
-         - integrity → a security hash to verify the file wasn't tampered with (SRI check)
-         - crossorigin="anonymous" → allows the browser to do the SRI check safely
-         - referrerpolicy="no-referrer" → don't send our page URL when fetching this script
-        This MUST load BEFORE script.js because script.js uses the 
-        QRCode class from this library 
-    -->
-
-  <script src="script.js" defer></script>
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="card">
-      <h1>QR Code Generator</h1>
-      <p class="subtitle">Enter text or URL to generate QR code</p>
-
-      <div class="input-section">
-        <textarea id="inputText" placeholder="Enter text or URL here..." rows="4"></textarea>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="screen active" id="start-screen">
+        <h1>Quiz Time!</h1>
+        <p>Test your knowledge with these fun questions</p>
+        <button id="start-btn">Start Quiz</button>
       </div>
 
-      <div class="options">
-        <div class="option-group">
-          <label for="size">Size:</label>
-          <select id="size">
-            <option value="200">200x200</option>
-            <option value="300">300x300</option>
-            <option value="400">400x400</option>
-          </select>
+      <div class="screen" id="quiz-screen">
+        <div class="quiz-header">
+          <h2 id="question-text">Question goes here</h2>
+          <div class="quiz-info">
+            <p>
+              Question <span id="current-question">1</span> of <span id="total-questions">5</span>
+            </p>
+
+            <p>Score: <span id="score">0</span></p>
+          </div>
+        </div>
+
+        <div id="answers-container" class="answers-container">
+          <!-- Answer buttons will be insterted here from our js code later at some point -->
+        </div>
+
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
         </div>
       </div>
 
-      <button class="generate-btn" id="generateBtn">Generate QR Code</button>
+      <div id="result-screen" class="screen">
+        <h1>Quiz Results</h1>
+        <div class="result-info">
+          <p>You scored <span id="final-score">0</span> out of <span id="max-score">5</span></p>
 
-      <div class="qr-section" id="qrSection">
-        <div class="qr-container" id="qrContainer"></div>
-        <button class="download-btn" id="downloadBtn">Download QR Code</button>
+          <div id="result-message">Good job!</div>
+        </div>
+        <button id="restart-btn">Restart Quiz</button>
       </div>
+    </div>
 
-    </div>   
-  </div>     
-
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
